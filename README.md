@@ -36,3 +36,7 @@ CIOBrain is the visualization of the mind of a CIO.
 	- Data.xlsx
 	- Infrastructure.xlsx
 4. Replace the respective files under the `./src/data/` folder
+
+## Viewing the Server Log
+
+The `log.txt` file can be found in the `./src/data/` folder. If this file is missing, no errors were found or recorded.
