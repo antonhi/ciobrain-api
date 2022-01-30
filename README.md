@@ -27,3 +27,12 @@ CIOBrain is the visualization of the mind of a CIO.
 		- ![post requests](https://i.imgur.com/PmaW7wf.png)
 	- For GET requests, no request body is needed. 
 	- More information for how api endpoints can be called can be found in [index.js](./index.js).
+
+## Changing Excel Files
+
+1. Acquire the datasets for application, data and infrastructure.
+2. Rename the excel files according to the corresponding file name:
+	- Application.xlsx
+	- Data.xlsx
+	- Infrastructure.xlsx
+4. Replace the respective files under the `./src/data/` folder
