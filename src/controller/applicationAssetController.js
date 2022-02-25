@@ -1,6 +1,9 @@
 applicationAssetModel = require('../model/applicationAssetModel');
 dataAssetModel = require('../model/dataAssetModel')
 infrastructureAssetModel = require('../model/infrastructureAssetModel')
+peopleAssetModel = require('../model/peopleAssetModel')
+projectsAssetModel = require('../model/projectsAssetModel')
+businessAssetModel = require('../model/businessAssetModel')
 const assetFunctions = require('../assetFunctions');
 XLSX = require('xlsx');
 
@@ -30,6 +33,21 @@ let applicationAssetController = {
             let infrastructureAssetChildrenIds = parent['Infrastructure Connections'].split(';');
             infrastructureAssetChildrenIds = infrastructureAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
             children = children.concat(assetFunctions.filterForValidInfrastructureChildren(parent, infrastructureAssetChildrenIds));
+        }
+        if (parent['People Connections'] && parent['People Connections'].trim().length) {
+            let peopleAssetChildrenIds = parent['People Connections'].split(';');
+            peopleAssetChildrenIds = peopleAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
+            children = children.concat(assetFunctions.filterForValidPeopleChildren(parent, peopleAssetChildrenIds));
+        }
+        if (parent['Projects Connections'] && parent['Projects Connections'].trim().length) {
+            let projectsAssetChildrenIds = parent['Projects Connections'].split(';');
+            projectsAssetChildrenIds = projectsAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
+            children = children.concat(assetFunctions.filterForValidProjectsChildren(parent, projectsAssetChildrenIds));
+        }
+        if (parent['Business Connections'] && parent['Business Connections'].trim().length) {
+            let businessAssetChildrenIds = parent['Business Connections'].split(';');
+            businessAssetChildrenIds = businessAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
+            children = children.concat(assetFunctions.filterForValidBusinessChildren(parent, businessAssetChildrenIds));
         }
 
         var hierarchy = {
