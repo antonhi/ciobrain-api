@@ -7,18 +7,18 @@ businessAssetModel = require('../model/businessAssetModel')
 const assetFunctions = require('../assetFunctions');
 XLSX = require('xlsx');
 
-let dataAssetController = {
+let projectsAssetController = {
     
     findById: (req, res) => {
-        res.json(dataAssetModel.findById(req.params.id));
+        res.json(projectsAssetModel.findById(req.params.id));
     },
     findAll: (req, res) => {
-        res.json(dataAssetModel.findAll());
+        res.json(projectsAssetModel.findAll());
     },
     findChildrenById: (req, res) => {
         let children = [];
-        let parent = dataAssetModel.findById(req.params.id);
-        parent["Asset Type"] = "Data";
+        let parent = projectsAssetModel.findById(req.params.id);
+        parent["Asset Type"] = "Projects";
         if (parent['Application Connections'] && parent['Application Connections'].trim().length) {
             let applicationAssetChildrenIds = parent['Application Connections'].split(';');
             applicationAssetChildrenIds = applicationAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
@@ -59,4 +59,4 @@ let dataAssetController = {
     }
 }
 
-module.exports = dataAssetController;
+module.exports = projectsAssetController;
