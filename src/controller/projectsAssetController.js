@@ -1,7 +1,7 @@
 applicationAssetModel = require('../model/applicationAssetModel');
 dataAssetModel = require('../model/dataAssetModel')
 infrastructureAssetModel = require('../model/infrastructureAssetModel')
-peopleAssetModel = require('../model/peopleAssetModel')
+talentAssetModel = require('../model/talentAssetModel')
 projectsAssetModel = require('../model/projectsAssetModel')
 businessAssetModel = require('../model/businessAssetModel')
 const assetFunctions = require('../assetFunctions');
@@ -34,10 +34,10 @@ let projectsAssetController = {
             infrastructureAssetChildrenIds = infrastructureAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
             children = children.concat(assetFunctions.filterForValidInfrastructureChildren(parent, infrastructureAssetChildrenIds));
         }
-        if (parent['People Connections'] && parent['People Connections'].trim().length) {
-            let peopleAssetChildrenIds = parent['People Connections'].split(';');
-            peopleAssetChildrenIds = peopleAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
-            children = children.concat(assetFunctions.filterForValidPeopleChildren(parent, peopleAssetChildrenIds));
+        if (parent['Talent Connections'] && parent['Talent Connections'].trim().length) {
+            let talentAssetChildrenIds = parent['talent Connections'].split(';');
+            talentAssetChildrenIds = talentAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
+            children = children.concat(assetFunctions.filterForValidTalentChildren(parent, talentAssetChildrenIds));
         }
         if (parent['Projects Connections'] && parent['Projects Connections'].trim().length) {
             let projectsAssetChildrenIds = parent['Projects Connections'].split(';');

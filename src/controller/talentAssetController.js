@@ -1,24 +1,24 @@
 applicationAssetModel = require('../model/applicationAssetModel');
 dataAssetModel = require('../model/dataAssetModel')
 infrastructureAssetModel = require('../model/infrastructureAssetModel')
-peopleAssetModel = require('../model/peopleAssetModel')
+talentAssetModel = require('../model/talentAssetModel')
 projectsAssetModel = require('../model/projectsAssetModel')
 businessAssetModel = require('../model/businessAssetModel')
 const assetFunctions = require('../assetFunctions');
 XLSX = require('xlsx');
 
-let peopleAssetController = {
+let talentAssetController = {
     
     findById: (req, res) => {
-        res.json(peopleAssetModel.findById(req.params.id));
+        res.json(talentAssetModel.findById(req.params.id));
     },
     findAll: (req, res) => {
-        res.json(peopleAssetModel.findAll());
+        res.json(talentAssetModel.findAll());
     },
     findChildrenById: (req, res) => {
         let children = [];
-        let parent = peopleAssetModel.findById(req.params.id);
-        parent["Asset Type"] = "People";
+        let parent = talentAssetModel.findById(req.params.id);
+        parent["Asset Type"] = "Talent";
         if (parent['Application Connections'] && parent['Application Connections'].trim().length) {
             let applicationAssetChildrenIds = parent['Application Connections'].split(';');
             applicationAssetChildrenIds = applicationAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
@@ -34,10 +34,10 @@ let peopleAssetController = {
             infrastructureAssetChildrenIds = infrastructureAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
             children = children.concat(assetFunctions.filterForValidInfrastructureChildren(parent, infrastructureAssetChildrenIds));
         }
-        if (parent['People Connections'] && parent['People Connections'].trim().length) {
-            let peopleAssetChildrenIds = parent['People Connections'].split(';');
-            peopleAssetChildrenIds = peopleAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
-            children = children.concat(assetFunctions.filterForValidPeopleChildren(parent, peopleAssetChildrenIds));
+        if (parent['Talent Connections'] && parent['Talent Connections'].trim().length) {
+            let talentAssetChildrenIds = parent['talent Connections'].split(';');
+            talentAssetChildrenIds = talentAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
+            children = children.concat(assetFunctions.filterForValidTalentChildren(parent, talentAssetChildrenIds));
         }
         if (parent['Projects Connections'] && parent['Projects Connections'].trim().length) {
             let projectsAssetChildrenIds = parent['Projects Connections'].split(';');
@@ -59,4 +59,4 @@ let peopleAssetController = {
     }
 }
 
-module.exports = peopleAssetController;
+module.exports = talentAssetController;

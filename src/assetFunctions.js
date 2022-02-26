@@ -1,7 +1,7 @@
 applicationAssetModel = require('./model/applicationAssetModel');
 dataAssetModel = require('./model/dataAssetModel')
 infrastructureAssetModel = require('./model/infrastructureAssetModel')
-peopleAssetModel = require('./model/peopleAssetModel');
+talentAssetModel = require('./model/talentAssetModel');
 projectsAssetModel = require('./model/projectsAssetModel');
 businessAssetModel = require('./model/businessAssetModel');
 const loggingModel = require('./model/loggingModel')
@@ -55,18 +55,18 @@ let assetFunctions = {
             return child;
         }).filter(item => item != null);
     },
-    filterForValidPeopleChildren: (asset, childrenList) => {
+    filterForValidTalentChildren: (asset, childrenList) => {
         return childrenList.map(id => {
-            var child = peopleAssetModel.findById(id); 
+            var child = talentAssetModel.findById(id); 
             if(!child) {
                 //asset not found
-                loggingModel.push('People Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" does not exist', JSON.stringify(asset));
+                loggingModel.push('Talent Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" does not exist', JSON.stringify(asset));
                 return null;
             } else if (!child["Name"] ) { 
-                loggingModel.push('People Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" exists but is invalid', JSON.stringify(asset));
+                loggingModel.push('Talent Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" exists but is invalid', JSON.stringify(asset));
                 return null;
             } else {
-                child["Asset Type"] = "People";
+                child["Asset Type"] = "Talent";
             }
             return child;
         }).filter(item => item != null);
