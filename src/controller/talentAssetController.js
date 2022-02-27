@@ -35,7 +35,7 @@ let talentAssetController = {
             children = children.concat(assetFunctions.filterForValidInfrastructureChildren(parent, infrastructureAssetChildrenIds));
         }
         if (parent['Talent Connections'] && parent['Talent Connections'].trim().length) {
-            let talentAssetChildrenIds = parent['talent Connections'].split(';');
+            let talentAssetChildrenIds = parent['Talent Connections'].split(';');
             talentAssetChildrenIds = talentAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
             children = children.concat(assetFunctions.filterForValidTalentChildren(parent, talentAssetChildrenIds));
         }
