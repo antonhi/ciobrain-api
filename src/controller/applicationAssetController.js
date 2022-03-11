@@ -18,7 +18,6 @@ let applicationAssetController = {
     findChildrenById: (req, res) => {
         let children = [];
         let parent = applicationAssetModel.findById(req.params.id);
-        parent["Asset Type"] = "Application";
         if (parent['Application Connections'] && parent['Application Connections'].trim().length) {
             let applicationAssetChildrenIds = parent['Application Connections'].split(';');
             applicationAssetChildrenIds = applicationAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));

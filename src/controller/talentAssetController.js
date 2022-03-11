@@ -18,7 +18,6 @@ let talentAssetController = {
     findChildrenById: (req, res) => {
         let children = [];
         let parent = talentAssetModel.findById(req.params.id);
-        parent["Asset Type"] = "Talent";
         if (parent['Application Connections'] && parent['Application Connections'].trim().length) {
             let applicationAssetChildrenIds = parent['Application Connections'].split(';');
             applicationAssetChildrenIds = applicationAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));

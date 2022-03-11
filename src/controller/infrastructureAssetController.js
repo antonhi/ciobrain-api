@@ -18,7 +18,6 @@ let infrastructureAssetController = {
     findChildrenById: (req, res) => {
         let children = [];
         let parent = infrastructureAssetModel.findById(req.params.id);
-        parent["Asset Type"] = "Infrastructure";
         if (parent['Application Connections'] && parent['Application Connections'].trim().length) {
             let applicationAssetChildrenIds = parent['Application Connections'].split(';');
             applicationAssetChildrenIds = applicationAssetChildrenIds.map(item => parseInt(item.replace(/\D/g, '')));
