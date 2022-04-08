@@ -8,7 +8,35 @@ const assetFunctions = require('../assetFunctions');
 XLSX = require('xlsx');
 
 let projectsAssetController = {
-    
+
+    push: (req, res) =>{
+        try {
+            let assets = req.body;
+            let importedAssets = 0;
+            let invalidAssets = 0;
+            let duplicateAssets = 0;
+
+            assets.forEach(asset => {
+                const id = asset["Projects ID"];
+                if(!id){
+                    invalidAssets++;
+                }else if(projectsAssetModel.findById(id)){
+                    duplicateAssets++;
+                }else{
+                    projectsAssetModel.push(asset);
+                    importedAssets++;
+                }
+            })
+
+            res.status(200).json({
+                imported: importedAssets,
+                duplicate: duplicateAssets,
+                invalid: invalidAssets
+            })
+        } catch (ex) {
+            res.status(400).json({error: "Invalid Body"});
+        }
+    },
     findById: (req, res) => {
         res.json(projectsAssetModel.findById(req.params.id));
     },

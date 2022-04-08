@@ -14,7 +14,14 @@ app.use(cors());
 app.options('*', cors());
 app.use(express.json());
 
-// Controllers 
+// Controllers
+app.post("/asset/application", applicationAssetController.push);
+app.post("/asset/data", dataAssetController.push);
+app.post("/asset/infrastructure", infrastructureAssetController.push);
+app.post("/asset/talent", talentAssetController.push);
+app.post("/asset/projects", projectsAssetController.push);
+app.post("/asset/business", businessAssetController.push);
+
 app.get("/asset/application/:id", applicationAssetController.findById);
 app.get("/asset/data/:id", dataAssetController.findById);
 app.get("/asset/infrastructure/:id", infrastructureAssetController.findById);

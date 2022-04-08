@@ -6,10 +6,10 @@ let data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
 let infrastructureAssetModel = {
 
     push: (asset) =>{
-        data.push(...asset);
+        data.push(asset);
     },
     findById: (id) => {
-        return data.filter(item => parseInt(item["Infrastructure ID"]) === id)[0];
+        return data.filter(item => parseInt(item["Infrastructure ID"]) == id)[0];
     },
     findAll: () => {
         return data;

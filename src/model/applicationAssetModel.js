@@ -4,7 +4,10 @@ let workbook = XLSX.readFile('./src/data/Application.xlsx', {type: "binary"});
 let data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
 
 let applicationAssetModel = {
-    
+
+    push: (asset) => {
+        data.push(asset);
+    },
     findById: (id) => {
         return data.filter(item => parseInt(item["Application ID"]) == id)[0];
     },
