@@ -1,12 +1,10 @@
-const assetModels = require('../model/assetModels');
-const BaseAssetController = require("./BaseAssetController");
+import BaseAssetController from "./BaseAssetController.js";
+import assetModels from "../model/assetModels.js";
 
-class BusinessAssetController extends BaseAssetController {
+export default class BusinessAssetController extends BaseAssetController {
 
     constructor() {
         super(assetModels.business);
     }
 
 }
-
-module.exports = BusinessAssetController;

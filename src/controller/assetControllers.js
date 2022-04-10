@@ -1,15 +1,9 @@
-/*
-const AssetController = require("./BaseAssetController");
-const assetModels = require("../model/assetModels");
-const assetControllers = Object.fromEntries(Object.entries(assetModels).map(([type, model]) => [type, new AssetController(model)]))
-*/
-
-const ApplicationAssetController = require("./ApplicationAssetController");
-const BusinessAssetController = require("./BusinessAssetController");
-const DataAssetController = require("./DataAssetController");
-const InfrastructureAssetController = require("./InfrastructureAssetController");
-const ProjectsAssetController = require("./ProjectsAssetController");
-const TalentAssetController = require("./TalentAssetController");
+import ApplicationAssetController from "./ApplicationAssetController.js";
+import BusinessAssetController from "./BusinessAssetController.js";
+import DataAssetController from "./DataAssetController.js";
+import InfrastructureAssetController from "./InfrastructureAssetController.js";
+import ProjectsAssetController from "./ProjectsAssetController.js";
+import TalentAssetController from "./TalentAssetController.js";
 
 const assetControllers = {
     application: new ApplicationAssetController(),
@@ -20,4 +14,8 @@ const assetControllers = {
     talent: new TalentAssetController()
 }
 
-module.exports = assetControllers;
+// import assetModels from "../model/assetModels.js";
+// import BaseAssetController from "./BaseAssetController.js";
+// const assetControllers = Object.fromEntries(Object.entries(assetModels).map(([type, model]) => [type, new BaseAssetController(model)]))
+
+export default assetControllers;

@@ -1,6 +1,6 @@
-const XLSX = require('xlsx');
+import XLSX from "xlsx";
 
-class BaseAssetModel {
+export default class BaseAssetModel {
 
     constructor(filePath, assetType) {
         const workbook = XLSX.readFile(filePath, {type: "binary"});
@@ -33,5 +33,3 @@ class BaseAssetModel {
     findAll = () => this.data
 
 }
-
-module.exports = BaseAssetModel;

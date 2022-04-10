@@ -1,10 +1,9 @@
-const BaseAssetModel = require("./BaseAssetModel");
+import BaseAssetModel from "./BaseAssetModel.js";
 
-class DataAssetModel extends BaseAssetModel {
+export default class DataAssetModel extends BaseAssetModel {
 
     constructor() {
-        super('./src/data/Data.xlsx', "Data");
+        super("./src/data/Data.xlsx", "Data");
     }
-}
 
-module.exports = DataAssetModel;
+}
