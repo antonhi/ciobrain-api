@@ -1,4 +1,4 @@
-const loggingModel = require('./model/loggingModel')
+const loggingModel = require("./model/loggingModel")
 
 let assetFunctions = {
     /**
@@ -7,19 +7,37 @@ let assetFunctions = {
      * @param {BaseAssetModel} assetModel
      */
     filterForValidChildren: (asset, childrenList, assetModel) => {
-        return childrenList.map(id => {
-            const child = assetModel.findById(id);
-            const type = assetModel.assetType;
-            if (!child) {
-                loggingModel.push(type + ' Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" does not exist', JSON.stringify(asset));
-                return null;
-            } else if (!child["Name"]) {
-                loggingModel.push(type + ' Connection with an ID of ' + id + ' for asset "' + asset["Name"] + '" exists but is invalid', JSON.stringify(asset));
-                return null;
-            }
-            return child;
-        }).filter(item => item != null);
+        return childrenList
+            .map(id => {
+                const child = assetModel.findById(id)
+                const type = assetModel.assetType
+                if (!child) {
+                    loggingModel.push(
+                        type +
+                            " Connection with an ID of " +
+                            id +
+                            ' for asset "' +
+                            asset["Name"] +
+                            '" does not exist',
+                        JSON.stringify(asset)
+                    )
+                    return null
+                } else if (!child["Name"]) {
+                    loggingModel.push(
+                        type +
+                            " Connection with an ID of " +
+                            id +
+                            ' for asset "' +
+                            asset["Name"] +
+                            '" exists but is invalid',
+                        JSON.stringify(asset)
+                    )
+                    return null
+                }
+                return child
+            })
+            .filter(item => item != null)
     }
 }
 
-module.exports = assetFunctions;
+module.exports = assetFunctions

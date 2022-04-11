@@ -1,20 +1,12 @@
-const ApplicationAssetModel = require("./ApplicationAssetModel");
-const BusinessAssetModel = require("./BusinessAssetModel");
-const DataAssetModel = require("./DataAssetModel");
-const InfrastructureAssetModel = require("./InfrastructureAssetModel");
-const ProjectsAssetModel = require("./ProjectsAssetModel");
-const TalentAssetModel = require("./TalentAssetModel");
-
-//const AssetModel = require("./BaseAssetModel");
+const AssetModel = require("./BaseAssetModel")
 
 const assetModels = {
-    //application: new AssetModel('./src/data/Application.xlsx', "Application"),
-    application: new ApplicationAssetModel(),
-    business: new BusinessAssetModel(),
-    data: new DataAssetModel(),
-    infrastructure: new InfrastructureAssetModel(),
-    projects: new ProjectsAssetModel(),
-    talent: new TalentAssetModel()
+    application: new AssetModel("./src/data/Application.xlsx", "Application"),
+    data: new AssetModel("./src/data/Data.xlsx", "Data"),
+    infrastructure: new AssetModel("./src/data/Infrastructure.xlsx", "Infrastructure"),
+    talent: new AssetModel("./src/data/Talent.xlsx", "Talent"),
+    projects: new AssetModel("./src/data/Projects.xlsx", "Projects"),
+    business: new AssetModel("./src/data/Business.xlsx", "Business")
 }
 
-module.exports = assetModels;
+module.exports = assetModels
