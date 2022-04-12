@@ -1,12 +1,12 @@
-const AssetModel = require("./BaseAssetModel")
+import BaseAssetModel from "./BaseAssetModel.js"
 
 const assetModels = {
-    application: new AssetModel("./src/data/Application.xlsx", "Application"),
-    data: new AssetModel("./src/data/Data.xlsx", "Data"),
-    infrastructure: new AssetModel("./src/data/Infrastructure.xlsx", "Infrastructure"),
-    talent: new AssetModel("./src/data/Talent.xlsx", "Talent"),
-    projects: new AssetModel("./src/data/Projects.xlsx", "Projects"),
-    business: new AssetModel("./src/data/Business.xlsx", "Business")
+    application: new BaseAssetModel("./src/data/Application.xlsx", "Application"),
+    data: new BaseAssetModel("./src/data/Data.xlsx", "Data"),
+    infrastructure: new BaseAssetModel("./src/data/Infrastructure.xlsx", "Infrastructure"),
+    talent: new BaseAssetModel("./src/data/Talent.xlsx", "Talent"),
+    projects: new BaseAssetModel("./src/data/Projects.xlsx", "Projects"),
+    business: new BaseAssetModel("./src/data/Business.xlsx", "Business")
 }
 
-module.exports = assetModels
+export default assetModels

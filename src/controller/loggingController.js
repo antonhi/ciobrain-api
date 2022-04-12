@@ -1,4 +1,4 @@
-const loggingModel = require("./../model/loggingModel")
+import loggingModel from "../model/loggingModel.js"
 
 let loggingController = {
     push: (req, res) => {
@@ -6,4 +6,4 @@ let loggingController = {
     }
 }
 
-module.exports = loggingController
+export default loggingController

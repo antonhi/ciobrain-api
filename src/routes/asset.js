@@ -1,7 +1,7 @@
-const express = require("express")
-const assetControllers = require("../controller/assetControllers")
+import { Router } from "express"
+import assetControllers from "../controller/assetControllers.js"
 
-const router = express.Router()
+const assetRouter = Router()
 
 const getAssetController = (req, res, next) => {
     const controller = assetControllers[req.params.type.toLowerCase()]
@@ -21,10 +21,10 @@ const findById = (req, res) => req.assetController.findById(req, res)
 
 const findChildrenById = (req, res) => req.assetController.findChildrenById(req, res)
 
-router.use("/:type", getAssetController)
+assetRouter.use("/:type", getAssetController)
 
-router.route("/:type").get(findAll).post(push)
-router.get("/:type/:id", findById)
-router.get("/:type/:id/children", findChildrenById)
+assetRouter.route("/:type").get(findAll).post(push)
+assetRouter.get("/:type/:id", findById)
+assetRouter.get("/:type/:id/children", findChildrenById)
 
-module.exports = router
+export default assetRouter
