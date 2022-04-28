@@ -4,8 +4,18 @@ let loggingModel = {
     push: (data, details, dateTime = null) => {
         if (!dateTime) {
             const today = new Date()
-            const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
-            const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+            const date =
+                today.getFullYear() +
+                "-" +
+                (today.getMonth() + 1) +
+                "-" +
+                today.getDate()
+            const time =
+                today.getHours() +
+                ":" +
+                today.getMinutes() +
+                ":" +
+                today.getSeconds()
             dateTime = date + " " + time
         }
         appendFile(

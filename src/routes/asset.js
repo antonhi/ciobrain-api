@@ -19,7 +19,8 @@ const push = (req, res) => req.assetController.push(req, res)
 
 const findById = (req, res) => req.assetController.findById(req, res)
 
-const findChildrenById = (req, res) => req.assetController.findChildrenById(req, res)
+const findChildrenById = (req, res) =>
+    req.assetController.findChildrenById(req, res)
 
 assetRouter.use("/:type", getAssetController)
 

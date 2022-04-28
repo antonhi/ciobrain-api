@@ -1,8 +1,7 @@
-import assetModels from "../model/assetModels.js";
-import assetFunctions from "../assetFunctions.js";
+import assetModels from "../model/assetModels.js"
+import assetFunctions from "../assetFunctions.js"
 
 export default class BaseAssetController {
-
     /**
      * @param {BaseAssetModel} assetModel
      */
@@ -11,15 +10,22 @@ export default class BaseAssetController {
     }
 
     push = (req, res) => {
-        const assets = req.body;
-        res.json(Array.isArray(assets) ? this._assetModel.push(req.body) : {error: "Invalid Body"})
+        const assets = req.body
+        res.json(
+            Array.isArray(assets)
+                ? this._assetModel.push(req.body)
+                : { error: "Invalid Body" }
+        )
     }
 
     findById = (req, res) => {
         const id = req.params.id
         const asset = this._assetModel.findById(id)
         if (asset) res.json(asset)
-        else res.json({ error: `${id} is not a valid ${this._assetModel.assetType} ID` })
+        else
+            res.json({
+                error: `${id} is not a valid ${this._assetModel.assetType} ID`
+            })
     }
 
     findAll = (req, res) => {
@@ -31,17 +37,27 @@ export default class BaseAssetController {
         let children = []
         let parent = this._assetModel.findById(id)
         if (!parent) {
-            res.json({ error: `${id} is not a valid ${this._assetModel.assetType} ID` })
+            res.json({
+                error: `${id} is not a valid ${this._assetModel.assetType} ID`
+            })
             return
         }
 
         for (const key in assetModels) {
-            const model = assetModels[key];
-            const connectionType = model.assetType + " Connections";
-            const connections = parent[connectionType];
+            const model = assetModels[key]
+            const connectionType = model.assetType + " Connections"
+            const connections = parent[connectionType]
             if (connections && connections.trim().length) {
-                const childrenIds = connections.split(";").map(item => parseInt(item.replace(/\D/g, "")));
-                children.push(...assetFunctions.filterForValidChildren(parent, childrenIds, model));
+                const childrenIds = connections
+                    .split(";")
+                    .map(item => parseInt(item.replace(/\D/g, "")))
+                children.push(
+                    ...assetFunctions.filterForValidChildren(
+                        parent,
+                        childrenIds,
+                        model
+                    )
+                )
             }
         }
 

@@ -3,7 +3,9 @@ import XLSX from "xlsx"
 export default class BaseAssetModel {
     constructor(filePath, assetType) {
         const workbook = XLSX.readFile(filePath, { type: "binary" })
-        this.data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
+        this.data = XLSX.utils.sheet_to_json(
+            workbook.Sheets[workbook.SheetNames[0]]
+        )
         this.assetType = assetType
         this.data.forEach(asset => (asset["Asset Type"] = assetType))
     }
@@ -24,10 +26,17 @@ export default class BaseAssetModel {
                 importedAssets++
             }
         })
-        return { imported: importedAssets, duplicate: duplicateAssets, invalid: invalidAssets }
+        return {
+            imported: importedAssets,
+            duplicate: duplicateAssets,
+            invalid: invalidAssets
+        }
     }
 
-    findById = id => this.data.find(item => parseInt(item[this.assetType + " ID"]) === parseInt(id))
+    findById = id =>
+        this.data.find(
+            item => parseInt(item[this.assetType + " ID"]) === parseInt(id)
+        )
 
     findAll = _ => this.data
 }
