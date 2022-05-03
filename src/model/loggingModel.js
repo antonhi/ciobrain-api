@@ -1,4 +1,7 @@
 import { appendFile } from "fs"
+import path from "path";
+
+const __dirname = path.resolve()
 
 let loggingModel = {
     push: (data, details, dateTime = null) => {
@@ -19,7 +22,7 @@ let loggingModel = {
             dateTime = date + " " + time
         }
         appendFile(
-            __dirname + "/../data/log.txt",
+            __dirname + "/src/data/log.txt",
             dateTime + " " + data + "\n\tDetails: " + details + "\n",
             err => {
                 if (err) {
