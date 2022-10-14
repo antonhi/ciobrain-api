@@ -6,7 +6,7 @@ const authenticate = (req, res, next) => {
         next();
         return;
     }
-    res.json({ error: "Not authenticated" })
+    res.status(401).json({ error: "Not authenticated" })
 }
 
 export default authenticate;

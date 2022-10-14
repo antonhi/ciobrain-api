@@ -16,12 +16,16 @@ export default class BaseAssetModel {
         let duplicateAssets = 0
         assets.forEach(asset => {
             const id = asset[this.assetType + " ID"]
+            const name = asset['Name']
             if (!id) {
                 invalidAssets++
-            } else if (this.findById(id)) {
+            } else if (this.findByIdAndName(id, name)) {
                 duplicateAssets++
             } else {
                 asset["Asset Type"] = this.assetType
+                if (this.findById(id)) {
+                    asset[this.assetType + " ID"] = this.getNextId();
+                }
                 this.data.push(asset)
                 importedAssets++
             }
@@ -38,5 +42,17 @@ export default class BaseAssetModel {
             item => parseInt(item[this.assetType + " ID"]) === parseInt(id)
         )
 
+    findByIdAndName = (id, name) => this.data.find(item => parseInt(item[this.assetType + " ID"]) === parseInt(id) && item['Name'] === name)
+
     findAll = _ => this.data
+
+    getNextId = _ => {
+        let maxId = 1;
+        for (let asset of this.data) {
+            if (parseInt(asset[this.assetType + " ID"]) > maxId) {
+                maxId = parseInt(asset[this.assetType + " ID"]);
+            }
+        }
+        return maxId;
+    }
 }
