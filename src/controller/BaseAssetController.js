@@ -10,10 +10,10 @@ export default class BaseAssetController {
     }
 
     push = (req, res) => {
-        const assets = req.body
+        const assets = req.body.data
         res.json(
             Array.isArray(assets)
-                ? this._assetModel.push(req.body)
+                ? this._assetModel.push(req.body.data)
                 : { error: "Invalid Body" }
         )
     }

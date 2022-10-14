@@ -1,5 +1,6 @@
 import { Router } from "express"
 import assetControllers from "../controller/assetControllers.js"
+import authenticate from "./authenticate.js"
 
 const assetRouter = Router()
 
@@ -24,7 +25,7 @@ const findChildrenById = (req, res) =>
 
 assetRouter.use("/:type", getAssetController)
 
-assetRouter.route("/:type").get(findAll).post(push)
+assetRouter.route("/:type").get(findAll).post(authenticate, push)
 assetRouter.get("/:type/:id", findById)
 assetRouter.get("/:type/:id/children", findChildrenById)
 

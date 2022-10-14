@@ -2,8 +2,9 @@ import express from "express"
 import cors from "cors"
 import assetRouter from "./src/routes/asset.js"
 import loggingController from "./src/controller/loggingController.js"
+import authenticationRouter from "./src/routes/authenticate.js"
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 const app = express()
 
 app.use(cors())
