@@ -1,6 +1,6 @@
 import { Router } from "express"
 import assetControllers from "../controller/assetControllers.js"
-import authenticate from "./authenticate.js"
+import { authenticate } from "./authenticate.js"
 
 const assetRouter = Router()
 
